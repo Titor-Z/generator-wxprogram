@@ -1,0 +1,28 @@
+# Gulp 的工程配置文件，默认为 .gulp.yml
+
+# CSS 工程配置:
+css:
+  # 文件编译对照表:
+  source:
+    - [./stylus/app.styl, ./style/index.styl]
+    - [./style/hahah.styl]
+
+  object:
+    - ./css/
+    - ./haha/
+  
+  # 构建后的文件后缀名
+  build:
+    extname: .wxss
+  
+  # 压缩后的文件后缀名
+  min:
+    extname: .min.css
+
+# 自动化工程配置
+autoBuild:
+  - ~
+
+# 压缩工程配置
+minBuild:
+  - ~

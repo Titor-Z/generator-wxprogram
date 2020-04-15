@@ -1,0 +1,9 @@
+.vs*
+.idea*
+.ato*
+
+node_modules/*
+
+.DS_Store
+*.ini
+.git
