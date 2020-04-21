@@ -5,7 +5,7 @@ const fs = require("fs")
 const rename = require("gulp-rename")
 
 // Gulp工程配置文件：*.yml
-const yamlFile = `./.gulp.yml`
+const yamlFile = `./gulp.yml`
 
 let projectConfig
 try {
