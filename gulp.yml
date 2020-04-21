@@ -39,5 +39,5 @@ autoBuild:
   - ~
 
 # 压缩工程配置
-minBuild:
-  - ~
+# minBuild:
+#   - ~

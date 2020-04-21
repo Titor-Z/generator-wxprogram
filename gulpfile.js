@@ -3,6 +3,7 @@ const stylus = require("gulp-stylus")
 const YAML = require("yaml")
 const fs = require("fs")
 const rename = require("gulp-rename")
+const csso = require("gulp-csso")
 
 // Gulp工程配置文件：*.yml
 const yamlFile = `./gulp.yml`
@@ -21,6 +22,8 @@ const source = projectConfig.css.source
 const object = projectConfig.css.object
 // 目标文件后缀名为null设置
 let buildExtname = projectConfig.css.build.extname == null ? '.css' : projectConfig.css.build.extname
+// 目标文件压缩后缀名为null设置
+let minExtname = projectConfig.css.min.extname == null ? '.min.css' : projectConfig.css.min.extname
 
 /****************************************************************
 * CSS
@@ -32,6 +35,8 @@ let buildExtname = projectConfig.css.build.extname == null ? '.css' : projectCon
 async function css() {
   for (let number = 0; number < source.length; number++) {
     await cssBuilder(number)
+      .pipe(rename({ extname: buildExtname }))
+      .pipe(dest(object[index]))
   }
 }
 
@@ -41,8 +46,18 @@ async function css() {
 function cssBuilder(index) {
   return src(source[index], { allowEmpty: true })
     .pipe(stylus())
-    .pipe(rename({ extname: buildExtname }))
-    .pipe(dest(object[index]))
+}
+
+/* CSS 压缩
+** 与CSS构建类似，增加了css压缩功能
+********************************/
+function cssMini() {
+  for (let number = 0; number < source.length; number++) {
+    await cssBuilder(number)
+      .pipe(csso())
+      .pipe(rename({ extname: minExtname }))
+      .pipe(dest(object[index]))
+  }
 }
 
 /****************************************************************
@@ -55,3 +70,4 @@ watch(autoGlobs, series(css))
 * Gulp Commands
 ****************************************************************/
 exports.default = parallel(css)
+exports.min = parallel(cssMini)
