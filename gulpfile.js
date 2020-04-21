@@ -1,13 +1,15 @@
-const { src, parallel, dest } = require("gulp")
+const { src, parallel, dest, watch, series } = require("gulp")
 const stylus = require("gulp-stylus")
 const YAML = require("yaml")
 const fs = require("fs")
 const rename = require("gulp-rename")
 
 // Gulp工程配置文件：*.yml
-const configFile = `../gulp.yml`
+const yamlFile = `./.gulp.yml`
+
+let projectConfig
 try {
-  const projectConfig = YAML.parse(fs.readFileSync(configFile, "utf8"))
+  projectConfig = YAML.parse(fs.readFileSync(yamlFile, "utf8"))
 } catch (error) {
   console.log(`工程配置文件读取错误，请查看 ${configFile} 是否存在`)
   return console.error(error)
@@ -19,7 +21,6 @@ const source = projectConfig.css.source
 const object = projectConfig.css.object
 // 目标文件后缀名为null设置
 let buildExtname = projectConfig.css.build.extname == null ? '.css' : projectConfig.css.build.extname
-
 
 /****************************************************************
 * CSS
@@ -40,10 +41,15 @@ async function css() {
 function cssBuilder(index) {
   return src(source[index], { allowEmpty: true })
     .pipe(stylus())
-    .pipe(dest(object[index]))
     .pipe(rename({ extname: buildExtname }))
+    .pipe(dest(object[index]))
 }
 
+/****************************************************************
+* 自动化
+****************************************************************/
+let autoGlobs = projectConfig.autoBuild[0] == null ? '' : projectConfig.autoBuild
+watch(autoGlobs, series(css))
 
 /****************************************************************
 * Gulp Commands
