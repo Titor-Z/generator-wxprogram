@@ -1,0 +1,24 @@
+{
+  "name": "css-grid",
+  "version": "1.0.0",
+  "description": "stylus language 工程配置脚手架，通过设置简单的配置项，即可使用gulp来接管项目中的 stylus语言的编译",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "gulp",
+    "auto": "gulp -w",
+    "min": "gulp min"
+  },
+  "keywords": ["gulp","stylus","gulp-stylus"],
+  "author": "Titor",
+  "email": "foolsecret@163.com",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  },
+  "dependencies": {
+    "gulp-csso": "^4.0.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-stylus": "^2.7.0",
+    "yaml": "^1.9.2"
+  }
+}
