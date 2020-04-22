@@ -8,7 +8,11 @@
     "auto": "gulp -w",
     "min": "gulp min"
   },
-  "keywords": ["gulp","stylus","gulp-stylus"],
+  "keywords": [
+    "gulp",
+    "stylus",
+    "gulp-stylus"
+  ],
   "author": "Titor",
   "email": "foolsecret@163.com",
   "license": "ISC",
