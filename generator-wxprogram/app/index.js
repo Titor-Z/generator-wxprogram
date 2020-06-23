@@ -1,27 +1,30 @@
-const generators = require('yeoman-generator')
-const _ = require('yeoman-generator/node_modules/lodash')
-const glob = require('yeoman-generator/node_modules/glob')
-const chalk = require('yeoman-generator/node_modules/chalk')
+const Generator = require("yeoman-generator")
 
-const fs = require('fs')
-const path = require('path')
-const del = require('del')
-const generatorName = 'wxprogram'
-
-
-
-
-module.exports = yeoman.generators.Base.extend({
-  constructor: function () {
-    yeoman.generators.Base.apply(this, arguments)
-  },
-  prompting: function () {
-
-  },
-  writing: {
-
-  },
-  end: {
-
+class wxprogram extends Generator {
+  constructor(params, opts) {
+    console.log(`构造阶段`)
+    super(params, opts)
   }
-})
+
+  initializing() {
+    console.log(`初始化阶段`)
+  }
+
+  prompting() {
+    console.log(`交互阶段`)
+    const done = this.async()
+
+    const opts = [
+      {
+        type: 'confirm',
+        name: ''
+      }
+    ]
+  }
+
+  writing() {
+    console.log(`写入阶段`)
+  }
+}
+
+module.exports = wxprogram
