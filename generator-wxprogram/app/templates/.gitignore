@@ -6,6 +6,7 @@
 # 系统忽略
 *.ini
 .DS_Store
+.Mac*
 
 # 项目忽略
 *.log

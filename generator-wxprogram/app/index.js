@@ -1,30 +1,43 @@
 const Generator = require("yeoman-generator")
 
 class wxprogram extends Generator {
-  constructor(params, opts) {
-    console.log(`构造阶段`)
-    super(params, opts)
+
+  constructor(args, opts) {
+    super(args, opts)
+    this.argument("appname", {
+      type: String,
+      required: true,
+      default: this.appname
+    })
   }
+
 
   initializing() {
-    console.log(`初始化阶段`)
+    // console.log(`初始化阶段`)
   }
 
-  prompting() {
-    console.log(`交互阶段`)
-    const done = this.async()
 
-    const opts = [
+  async prompting() {
+    // CLI用户填写选项：
+    this.answers = await this.prompt([
       {
-        type: 'confirm',
-        name: ''
+        type: 'input',
+        name: 'appId',
+        message: '小程序开发AppID'
       }
-    ]
+    ])
   }
+
 
   writing() {
-    console.log(`写入阶段`)
+    this.log("项目名称:", this.options.appname)
+    this.log("App ID:", this.answers.appId)
   }
+
+  install() {
+    this.yarnInstall()
+  }
+
 }
 
 module.exports = wxprogram
