@@ -34,7 +34,23 @@ class wxprogram extends Generator {
       { src: 'package.json', obj: 'package.json', options: { name: this.options.appname } },
       { src: 'project.config.json', obj: 'project.config.json', options: { appId: this.answers.appId, name: this.options.appname } }
     ])
-    // this.copy()
+
+    // 移动固定文件
+    this._copy([
+      { src: 'gulpfile.js', obj: 'gulpfile.js' },
+      { src: 'gulp.yml', obj: 'gulp.yml' },
+      { src: '.gitignore', obj: '.gitignore' },
+      { src: 'tasks/css.js', obj: 'tasks/css.js' },
+      { src: 'tasks/project.js', obj: 'tasks/project.js' },
+      { src: 'miniprogram/sitemap.json', obj: 'miniprogram/sitemap.json' },
+      { src: 'miniprogram/app.styl', obj: 'miniprogram/app.styl' },
+      { src: 'miniprogram/app.js', obj: 'miniprogram/app.js' },
+      { src: 'miniprogram/app.json', obj: 'miniprogram/app.json' },
+      { src: 'miniprogram/pages/index/index.js', obj: 'miniprogram/pages/index/index.js' },
+      { src: 'miniprogram/pages/index/index.json', obj: 'miniprogram/pages/index/index.json' },
+      { src: 'miniprogram/pages/index/index.styl', obj: 'miniprogram/pages/index/index.styl' },
+      { src: 'miniprogram/pages/index/index.wxml', obj: 'miniprogram/pages/index/index.wxml' }
+    ])
   }
 
 
@@ -55,16 +71,18 @@ class wxprogram extends Generator {
   /*
    * Copy 固定文件
   ################################################ */
-  copy() {
-    // this.fs.copy(
-    //   this.templatePath('package.json'),
-    //   this.destinationPath('package.json')
-    // )
+  _copy(files) {
+    files.forEach(file => {
+      this.fs.copy(
+        this.templatePath(file.src),
+        this.destinationPath(file.obj)
+      )
+    })
   }
 
 
   install() {
-    // this.yarnInstall()
+    this.yarnInstall()
   }
 
 }
