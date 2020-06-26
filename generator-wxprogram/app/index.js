@@ -1,5 +1,6 @@
 const Generator = require("yeoman-generator")
 
+
 class wxprogram extends Generator {
 
   constructor(args, opts) {
@@ -9,11 +10,6 @@ class wxprogram extends Generator {
       required: true,
       default: this.appname
     })
-  }
-
-
-  initializing() {
-    // console.log(`初始化阶段`)
   }
 
 
@@ -32,12 +28,46 @@ class wxprogram extends Generator {
   writing() {
     this.log("项目名称:", this.options.appname)
     this.log("App ID:", this.answers.appId)
+
+    // 移动模板文件
+    this._copyTemplates([
+      { src: 'package.json', obj: 'package.json', options: { name: this.options.appname } },
+      { src: 'project.config.json', obj: 'project.config.json', options: { appId: this.answers.appId, name: this.options.appname } }
+    ])
+    // this.copy()
   }
 
+
+  /*
+   * Copy 模板文件
+  ################################################ */
+  _copyTemplates(files) {
+    files.forEach(file => {
+      this.fs.copyTpl(
+        this.templatePath(file.src),
+        this.destinationPath(file.obj),
+        file.options
+      )
+    })
+  }
+
+
+  /*
+   * Copy 固定文件
+  ################################################ */
+  copy() {
+    // this.fs.copy(
+    //   this.templatePath('package.json'),
+    //   this.destinationPath('package.json')
+    // )
+  }
+
+
   install() {
-    this.yarnInstall()
+    // this.yarnInstall()
   }
 
 }
+
 
 module.exports = wxprogram

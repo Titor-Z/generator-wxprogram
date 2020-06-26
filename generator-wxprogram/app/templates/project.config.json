@@ -27,8 +27,8 @@
 		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
-	"appid": "",
-	"projectname": "",
+	"appid": "<%= appId %>",
+	"projectname": "<%= name %>",
 	"libVersion": "2.11.0",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},

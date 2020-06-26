@@ -1,8 +1,7 @@
 {
-  "name": "templates",
+  "name": "<%= name %>",
   "version": "0.0.1",
   "main": "gulpfile.js",
-  "author": "Titor",
   "license": "MIT",
   "dependencies": {
     "gulp": "^4.0.2",
