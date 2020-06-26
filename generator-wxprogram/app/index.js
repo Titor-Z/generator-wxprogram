@@ -19,37 +19,42 @@ class wxprogram extends Generator {
       {
         type: 'input',
         name: 'appId',
-        message: '小程序开发AppID'
+        message: '小程序AppID:',
+        required: true
       }
     ])
   }
 
 
   writing() {
+
+    // 根据脚手架输入的工作目录：
+    const workDir = this.options.appname + '/'
+
     this.log("项目名称:", this.options.appname)
     this.log("App ID:", this.answers.appId)
 
     // 移动模板文件
     this._copyTemplates([
-      { src: 'package.json', obj: 'package.json', options: { name: this.options.appname } },
-      { src: 'project.config.json', obj: 'project.config.json', options: { appId: this.answers.appId, name: this.options.appname } }
+      { src: 'package.json', obj: `${workDir}package.json`, options: { name: this.options.appname } },
+      { src: 'project.config.json', obj: `${workDir}project.config.json`, options: { appId: this.answers.appId, name: this.options.appname } }
     ])
 
     // 移动固定文件
     this._copy([
-      { src: 'gulpfile.js', obj: 'gulpfile.js' },
-      { src: 'gulp.yml', obj: 'gulp.yml' },
-      { src: '.gitignore', obj: '.gitignore' },
-      { src: 'tasks/css.js', obj: 'tasks/css.js' },
-      { src: 'tasks/project.js', obj: 'tasks/project.js' },
-      { src: 'miniprogram/sitemap.json', obj: 'miniprogram/sitemap.json' },
-      { src: 'miniprogram/app.styl', obj: 'miniprogram/app.styl' },
-      { src: 'miniprogram/app.js', obj: 'miniprogram/app.js' },
-      { src: 'miniprogram/app.json', obj: 'miniprogram/app.json' },
-      { src: 'miniprogram/pages/index/index.js', obj: 'miniprogram/pages/index/index.js' },
-      { src: 'miniprogram/pages/index/index.json', obj: 'miniprogram/pages/index/index.json' },
-      { src: 'miniprogram/pages/index/index.styl', obj: 'miniprogram/pages/index/index.styl' },
-      { src: 'miniprogram/pages/index/index.wxml', obj: 'miniprogram/pages/index/index.wxml' }
+      { src: 'gulpfile.js', obj: `${workDir}gulpfile.js` },
+      { src: 'gulp.yml', obj: `${workDir}gulp.yml` },
+      { src: '.gitignore', obj: `${workDir}.gitignore` },
+      { src: 'tasks/css.js', obj: `${workDir}tasks/css.js` },
+      { src: 'tasks/project.js', obj: `${workDir}tasks/project.js` },
+      { src: 'miniprogram/sitemap.json', obj: `${workDir}miniprogram/sitemap.json` },
+      { src: 'miniprogram/app.styl', obj: `${workDir}miniprogram/app.styl` },
+      { src: 'miniprogram/app.js', obj: `${workDir}miniprogram/app.js` },
+      { src: 'miniprogram/app.json', obj: `${workDir}miniprogram/app.json` },
+      { src: 'miniprogram/pages/index/index.js', obj: `${workDir}miniprogram/pages/index/index.js` },
+      { src: 'miniprogram/pages/index/index.json', obj: `${workDir}miniprogram/pages/index/index.json` },
+      { src: 'miniprogram/pages/index/index.styl', obj: `${workDir}miniprogram/pages/index/index.styl` },
+      { src: 'miniprogram/pages/index/index.wxml', obj: `${workDir}miniprogram/pages/index/index.wxml` }
     ])
   }
 
@@ -82,6 +87,8 @@ class wxprogram extends Generator {
 
 
   install() {
+    // this.yarnInstall()
+    this.destinationRoot(this.options.appname)
     this.yarnInstall()
   }
 
