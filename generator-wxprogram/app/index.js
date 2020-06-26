@@ -13,34 +13,49 @@ class wxprogram extends Generator {
   }
 
 
+  /* 交互步骤
+   * Cli 下和用户进行交互的配置，可通过 this.options.[name]获取值
+  ********************************************************************** */
   async prompting() {
     // CLI用户填写选项：
     this.answers = await this.prompt([
       {
         type: 'input',
         name: 'appId',
-        message: '小程序AppID:',
+        message: '🚩小程序AppID:',
         required: true
+      },
+      {
+        type: 'list',
+        name: 'dependencies',
+        message: '🧩挑选你喜欢的package包管理工具:',
+        choices: [
+          { name: 'Yarn', value: 0, checked: true, },
+          { name: 'Npm', value: 1 }
+        ]
       }
     ])
   }
 
 
+  /* 文件处理阶段
+   * 编译模板，移动文件到项目最终的阶段下
+  ********************************************************************** */
   writing() {
 
-    // 根据脚手架输入的工作目录：
+    // Cli 用户输入的工作目录:
     const workDir = this.options.appname + '/'
 
     this.log("项目名称:", this.options.appname)
     this.log("App ID:", this.answers.appId)
 
-    // 移动模板文件
+    // 移动可变模板文件:
     this._copyTemplates([
       { src: 'package.json', obj: `${workDir}package.json`, options: { name: this.options.appname } },
       { src: 'project.config.json', obj: `${workDir}project.config.json`, options: { appId: this.answers.appId, name: this.options.appname } }
     ])
 
-    // 移动固定文件
+    // 移动不可变文件:
     this._copy([
       { src: 'gulpfile.js', obj: `${workDir}gulpfile.js` },
       { src: 'gulp.yml', obj: `${workDir}gulp.yml` },
@@ -59,9 +74,9 @@ class wxprogram extends Generator {
   }
 
 
-  /*
-   * Copy 模板文件
-  ################################################ */
+  /* COPY 可变模板文件
+   * 拷贝模板目录下可变的模板文件
+  ********************************************************************** */
   _copyTemplates(files) {
     files.forEach(file => {
       this.fs.copyTpl(
@@ -73,9 +88,9 @@ class wxprogram extends Generator {
   }
 
 
-  /*
-   * Copy 固定文件
-  ################################################ */
+  /* COPY 不可变文件
+   * 拷贝模板目录下不可变的文件
+  ********************************************************************** */
   _copy(files) {
     files.forEach(file => {
       this.fs.copy(
@@ -86,13 +101,34 @@ class wxprogram extends Generator {
   }
 
 
+  /* 安装步骤
+   * 通过指定工作目录下的package文件，安装项目依赖包
+  ********************************************************************** */
   install() {
-    // this.yarnInstall()
+    // 切换到 cli 用户输入的工作目录下(将默认执行命令的目录切换到指定的子目录下):
     this.destinationRoot(this.options.appname)
-    this.yarnInstall()
+
+    // 根据用户选择的 Package 包管理工具，使用不同的安装器:
+    switch (this.answers.dependencies) {
+      // 0: yarn
+      case 0:
+        this.yarnInstall()
+        break
+
+      // 1: npm
+      case 1:
+      default:
+        this.npmInstall()
+        break
+    }
   }
+
 
 }
 
 
+
+/* 导出生成器
+ * 导出的生成器名称就是用户在CLI中使用的生成器名称。例：yo wxprogram
+********************************************************************** */
 module.exports = wxprogram
