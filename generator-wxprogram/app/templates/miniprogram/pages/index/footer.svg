@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="360px" height="186px" viewBox="0 0 360 186" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>路径</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Android" transform="translate(0.000000, -454.000000)">
+            <polygon id="路径" fill="#1A49BA" points="-2.31814568e-12 512.5 128 454.902344 232 454.902344 360 512.5 360 640 0 640"></polygon>
+            <text id="帮助开发者快速搭建小程序开发环境。更多信" font-family="PingFangSC-Regular, PingFang SC" font-size="12" font-weight="normal" fill="#FFFFFF">
+                <tspan x="42" y="572">帮助开发者快速搭建小程序开发环境。更多信息，请</tspan>
+                <tspan x="87.054" y="589">查看项目目录中的Readme.md文件</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

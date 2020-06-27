@@ -1,0 +1,17 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- logo -->
+  <image class="logo" src="logo.svg"></image>
+  
+  <view class="head">
+    <text class="head-title">小葱</text>
+    <text class="version">v1.0</text>
+  </view>
+  <text class="label">小程序开发脚手架</text>
+
+  <text class="motto">{{motto}}</text>
+
+  <view class="footer">
+    <image src="footer.svg"></image>
+  </view>
+</view>
