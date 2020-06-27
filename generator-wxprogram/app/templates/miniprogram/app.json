@@ -3,10 +3,9 @@
     "pages/index/index"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ffb320",
-    "navigationBarTitleText": "小程序快速启动",
+    "navigationBarBackgroundColor": "#f1f1f1",
+    "navigationBarTitleText": "欢迎使用小葱CLI",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
