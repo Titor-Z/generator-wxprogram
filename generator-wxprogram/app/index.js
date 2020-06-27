@@ -17,6 +17,7 @@ class wxprogram extends Generator {
    * Cli 下和用户进行交互的配置，可通过 this.options.[name]获取值
   ********************************************************************** */
   async prompting() {
+    this.log(`若你没有小程序，可申请测试号的Appid \n(测试号申请地址: https://developers.weixin.qq.com/community/welogin?redirect_url=%2Fsandbox) \n`)
     // CLI用户填写选项：
     this.answers = await this.prompt([
       {
@@ -46,8 +47,12 @@ class wxprogram extends Generator {
     // Cli 用户输入的工作目录:
     const workDir = this.options.appname + '/'
 
+    this.log("\n--------------------- 项目详情 ---------------------")
+
     this.log("项目名称:", this.options.appname)
-    this.log("App ID:", this.answers.appId)
+    this.log("AppID:", this.answers.appId)
+
+    this.log("\n-------------------- 项目初始化 --------------------")
 
     // 移动可变模板文件:
     this._copyTemplates([
@@ -105,6 +110,8 @@ class wxprogram extends Generator {
    * 通过指定工作目录下的package文件，安装项目依赖包
   ********************************************************************** */
   install() {
+
+    this.log("\n-------------------- 安装依赖 --------------------")
     // 切换到 cli 用户输入的工作目录下(将默认执行命令的目录切换到指定的子目录下):
     this.destinationRoot(this.options.appname)
 
