@@ -74,7 +74,10 @@ class wxprogram extends Generator {
       { src: 'miniprogram/pages/index/index.js', obj: `${workDir}miniprogram/pages/index/index.js` },
       { src: 'miniprogram/pages/index/index.json', obj: `${workDir}miniprogram/pages/index/index.json` },
       { src: 'miniprogram/pages/index/index.styl', obj: `${workDir}miniprogram/pages/index/index.styl` },
-      { src: 'miniprogram/pages/index/index.wxml', obj: `${workDir}miniprogram/pages/index/index.wxml` }
+      { src: 'miniprogram/pages/index/index.wxml', obj: `${workDir}miniprogram/pages/index/index.wxml` },
+      { src: 'miniprogram/pages/index/index.wxss', obj: `${workDir}miniprogram/pages/index/index.wxss` },
+      { src: 'miniprogram/pages/index/logo.svg', obj: `${workDir}miniprogram/pages/index/logo.svg` },
+      { src: 'miniprogram/pages/index/footer.svg', obj: `${workDir}miniprogram/pages/index/footer.svg` },
     ])
   }
 
