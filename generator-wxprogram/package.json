@@ -1,0 +1,12 @@
+{
+  "name": "generator-wxprogram",
+  "version": "0.0.1",
+  "description": "小程序开发脚手架",
+  "main": "index.js",
+  "author": "Titor",
+  "license": "MIT",
+  "dependencies": {
+    "del": "^5.1.0",
+    "yeoman-generator": "^4.10.1"
+  }
+}

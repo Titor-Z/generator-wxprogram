@@ -1,0 +1,13 @@
+# 编辑器忽略
+.vs
+.atom
+.idea
+
+# 系统忽略
+*.ini
+.DS_Store
+.Mac*
+
+# 项目忽略
+*.log
+node_modules

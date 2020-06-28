@@ -1,12 +1,3 @@
-# Gulp 的工程配置文件，默认名为 gulp.yml
-# 你可以自己指定其他文件，需要在gulpfile中
-# 更改 yamlFile的路径为你使用的配置文件路径。
-
-# 本配置文件包含了当前工程中的
-# - css 编译配置
-# - 自动化配置
-# - 压缩配置
-
 # CSS 工程配置：
 # stylus文件编译所需的配置项。
 # 注意：source 和 object 是一一对应的。
@@ -14,7 +5,12 @@ css:
   # 源代码目录配置
   # 注意：采用二维数组配置
   source:
-    - [./*/*.styl, ./*/*/*.styl]
+    # - [./*/*.styl, ./*/*/*.styl, ./*/*/*/*.styl]
+    - 
+      - ./*/*.styl
+      - ./*/*/*.styl
+      - ./*/*/*/*.styl
+      - '!./stylus/'
 
   # 目标文件配置
   # 如果需要在源代码目录生成目标文件，可在下方对应的位置
@@ -29,15 +25,14 @@ css:
 
   # 压缩后的文件后缀名
   min:
-    extname: .min.css
+    extname: .min.wxss
 
 # 自动化工程配置
 # 采用一维数组配置，按格式添加需要监控
 # 的文件或文件夹到列表中即可。
 # 默认为空（自动退出监控任务）
 autoBuild:
-  - ~
-
-# 压缩工程配置
-# minBuild:
-#   - ~
+  - ./stylus/*
+  - ./miniprogram/*.styl
+  - ./miniprogram/*/*.styl
+  - ./miniprogram/*/*/*.styl
