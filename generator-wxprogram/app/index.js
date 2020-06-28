@@ -63,6 +63,7 @@ class wxprogram extends Generator {
     // 移动不可变文件:
     this._copy([
       { src: 'gulpfile.js', obj: `${workDir}gulpfile.js` },
+      { src: 'README.md', obj: `${workDir}README.md` },
       { src: 'gulp.yml', obj: `${workDir}gulp.yml` },
       { src: '.gitignore', obj: `${workDir}.gitignore` },
       { src: 'tasks/css.js', obj: `${workDir}tasks/css.js` },
