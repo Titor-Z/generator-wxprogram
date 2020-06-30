@@ -70,14 +70,12 @@ class wxprogram extends Generator {
       { src: 'tasks/project.js', obj: `${workDir}tasks/project.js` },
       { src: 'miniprogram/sitemap.json', obj: `${workDir}miniprogram/sitemap.json` },
       { src: 'miniprogram/app.styl', obj: `${workDir}miniprogram/app.styl` },
-      { src: 'miniprogram/app.wxss', obj: `${workDir}miniprogram/app.wxss` },
       { src: 'miniprogram/app.js', obj: `${workDir}miniprogram/app.js` },
       { src: 'miniprogram/app.json', obj: `${workDir}miniprogram/app.json` },
       { src: 'miniprogram/pages/index/index.js', obj: `${workDir}miniprogram/pages/index/index.js` },
       { src: 'miniprogram/pages/index/index.json', obj: `${workDir}miniprogram/pages/index/index.json` },
       { src: 'miniprogram/pages/index/index.styl', obj: `${workDir}miniprogram/pages/index/index.styl` },
       { src: 'miniprogram/pages/index/index.wxml', obj: `${workDir}miniprogram/pages/index/index.wxml` },
-      { src: 'miniprogram/pages/index/index.wxss', obj: `${workDir}miniprogram/pages/index/index.wxss` },
       { src: 'miniprogram/pages/index/logo.svg', obj: `${workDir}miniprogram/pages/index/logo.svg` },
       { src: 'miniprogram/pages/index/footer.svg', obj: `${workDir}miniprogram/pages/index/footer.svg` },
     ])
@@ -133,6 +131,15 @@ class wxprogram extends Generator {
         this.npmInstall()
         break
     }
+  }
+
+
+  /* 初始化项目模板
+   * 通过执行预设命令，初始化编译，确保项目初始文件正常生成
+  ********************************************************************** */
+  end() {
+    this.destinationRoot(this.options.appname)
+    this.spawnCommandSync("gulp")
   }
 
 
