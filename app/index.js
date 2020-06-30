@@ -70,6 +70,7 @@ class wxprogram extends Generator {
       { src: 'tasks/project.js', obj: `${workDir}tasks/project.js` },
       { src: 'miniprogram/sitemap.json', obj: `${workDir}miniprogram/sitemap.json` },
       { src: 'miniprogram/app.styl', obj: `${workDir}miniprogram/app.styl` },
+      { src: 'miniprogram/app.wxss', obj: `${workDir}miniprogram/app.wxss` },
       { src: 'miniprogram/app.js', obj: `${workDir}miniprogram/app.js` },
       { src: 'miniprogram/app.json', obj: `${workDir}miniprogram/app.json` },
       { src: 'miniprogram/pages/index/index.js', obj: `${workDir}miniprogram/pages/index/index.js` },
