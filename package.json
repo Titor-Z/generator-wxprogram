@@ -1,6 +1,6 @@
 {
   "name": "generator-wxprogram",
-  "version": "1.1.6",
+  "version": "1.2.0",
   "description": "小葱CLI-小程序开发脚手架",
   "main": "index.js",
   "author": "foolsecret",
@@ -13,9 +13,24 @@
     "app"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "weChat",
+    "微信小程序",
+    "脚手架",
+    "scaffold",
+    "cli",
+    "小葱cli",
+    "小程序cli",
+    "微信小程序cli",
+    "generator",
+    "tool",
+    "yeoman",
+    "dev",
+    "development",
+    "front-end",
+    "yo"
   ],
   "repository": {
-    "url": "git@github.com:Titor-Z/stylus-boot.git"
+    "url": "git@github.com:Titor-Z/generator-wxprogram.git"
   }
 }
