@@ -11,3 +11,4 @@
 # 项目忽略
 *.log
 node_modules
+*.wxss

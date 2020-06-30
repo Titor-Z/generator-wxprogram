@@ -8,3 +8,4 @@ node_modules
 *.ini
 
 *.log
+*.lock
