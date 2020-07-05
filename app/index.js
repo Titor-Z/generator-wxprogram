@@ -138,7 +138,7 @@ class wxprogram extends Generator {
    * 通过执行预设命令，初始化编译，确保项目初始文件正常生成
   ********************************************************************** */
   end() {
-    this.destinationRoot(this.options.appname)
+    // this.destinationRoot(this.options.appname)
     this.spawnCommandSync("gulp")
   }
 
