@@ -74,7 +74,16 @@ class wxprogram extends Generator {
       {
         src: "project.config.json",
         obj: `${workDir}project.config.json`,
-        options: { appId: this.answers.appId, name: this.options.appname }
+        options: {
+          appId: this.answers.appId,
+          name: this.options.appname,
+          scriptLang: this.answers.scriptLang
+        }
+      },
+      {
+        src: ".gitignore",
+        obj: `${workDir}.gitignore`,
+        options: { scriptLang: this.answers.scriptLang }
       }
     ])
 
@@ -83,7 +92,6 @@ class wxprogram extends Generator {
       { src: "gulpfile.js", obj: `${workDir}gulpfile.js` },
       { src: "README.md", obj: `${workDir}README.md` },
       { src: "gulp.yml", obj: `${workDir}gulp.yml` },
-      { src: ".gitignore", obj: `${workDir}.gitignore` },
       { src: "tasks/css.js", obj: `${workDir}tasks/css.js` },
       { src: "tasks/project.js", obj: `${workDir}tasks/project.js` },
       {
@@ -191,6 +199,7 @@ class wxprogram extends Generator {
    * 通过执行预设命令，初始化编译，确保项目初始文件正常生成
    ********************************************************************** */
   end() {
+    this.log("\n---------------------- 编译 ----------------------")
     // this.destinationRoot(this.options.appname)
     this.spawnCommandSync("gulp")
   }

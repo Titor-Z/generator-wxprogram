@@ -11,4 +11,6 @@
 # 项目忽略
 *.log
 node_modules
-*.wxss
+*.wxss <% if(scriptLang == 1) { %>
+miniprogram/*.js
+<% } %>
