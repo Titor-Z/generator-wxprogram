@@ -57,6 +57,7 @@ class wxprogram extends Generator {
 
     this.log("项目名称:", this.options.appname)
     this.log("AppID:", this.answers.appId)
+    this.log("Lang:", this.answers.scriptLang)
 
     this.log("\n-------------------- 项目初始化 --------------------")
 
@@ -65,7 +66,10 @@ class wxprogram extends Generator {
       {
         src: "package.json",
         obj: `${workDir}package.json`,
-        options: { name: this.options.appname }
+        options: {
+          name: this.options.appname,
+          scriptLang: this.answers.scriptLang
+        }
       },
       {
         src: "project.config.json",
@@ -87,12 +91,7 @@ class wxprogram extends Generator {
         obj: `${workDir}miniprogram/sitemap.json`
       },
       { src: "miniprogram/app.styl", obj: `${workDir}miniprogram/app.styl` },
-      { src: "miniprogram/app.js", obj: `${workDir}miniprogram/app.js` },
       { src: "miniprogram/app.json", obj: `${workDir}miniprogram/app.json` },
-      {
-        src: "miniprogram/pages/index/index.js",
-        obj: `${workDir}miniprogram/pages/index/index.js`
-      },
       {
         src: "miniprogram/pages/index/index.json",
         obj: `${workDir}miniprogram/pages/index/index.json`
@@ -114,6 +113,33 @@ class wxprogram extends Generator {
         obj: `${workDir}miniprogram/pages/index/footer.svg`
       }
     ])
+
+    // 动态引入JS/TS脚本文件
+    switch (this.answers.scriptLang) {
+      // JavaScript
+      case 0:
+      default:
+        this._copy([
+          { src: "miniprogram/app.js", obj: `${workDir}miniprogram/app.js` },
+          {
+            src: "miniprogram/pages/index/index.js",
+            obj: `${workDir}miniprogram/pages/index/index.js`
+          },
+        ])
+        break;
+      // TypeScript
+      case 1:
+        this._copy([
+          { src: "miniprogram/app.ts", obj: `${workDir}miniprogram/app.ts` },
+          { src: "tsconfig.json", obj: `${workDir}tsconfig.json` },
+          { src: "typings/", obj: `${workDir}typings/` },
+          {
+            src: "miniprogram/pages/index/index.ts",
+            obj: `${workDir}miniprogram/pages/index/index.ts`
+          }
+        ])
+        break;
+    }
   }
 
   /* COPY 可变模板文件
